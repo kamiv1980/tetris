@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="title">Tetris by Ivan Kameniev</div>
+</header>
+<main>
+    <div class="tetris">
+        <!-- <div>1</div> -->
+        <!-- <div>2</div> -->
+        <!-- <div>3</div> -->
+    </div>
+    <div class="control">
+        <div class="next-tetromino">
+            <div class="next-tetromino-preview"></div>
+        </div>
+        <div class="statistic">
+            <div><span>Score </span><span class="score">0</span></div>
+            <div><span>Level </span><span class="level">0</span></div>
+        </div>
+        <div class="buttons">
+            <button class="btn-up">&uarr;</button>
+            <button class="btn-left">&larr;</button>
+            <button class="btn-right">&rarr;</button>
+            <button class="btn-down">&darr;</button>
+        </div>
+    </div>
+</main>
+<section class="instructions">
+    <span><strong>* Up Arrow (↑) -</strong> Rotate the tetromino,</span>
+    <span><strong>Left Arrow (←) -</strong> Move the tetromino left,</span>
+    <span><strong>Right Arrow (→) -</strong> Move the tetromino right,</span>
+    <span><strong>Down Arrow (↓) -</strong> Move the tetromino down faster,</span>
+    <span><strong>Space -</strong> falling tetramino,</span>
+    <span><strong>Esc -</strong> Exit,</span>
+    <span><strong>Enter -</strong> Start/Pause the game.</span>
+</section>
+
+    <div class="overlay">
+        <div class="message"></div>
+        <button class="btn-restart">Enter</button>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
