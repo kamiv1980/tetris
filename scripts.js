@@ -10,7 +10,10 @@ let level = 0;
 let currentTetromino;
 let intervalId;
 let nextTetromino;
-let nextTetrominoElement; 
+let nextTetrominoElement;
+let moveSound;
+let rotateSound;
+let clearSound;
 
 // DOM elements
 const overlay = document.querySelector('.overlay');
@@ -86,6 +89,9 @@ function init() {
     levelElement.innerHTML = level;
     isGameOver = false;
     isPaused = false;
+    moveSound = new sound("sounds/pop-sound.mp3")
+    rotateSound = new sound("sounds/rotation.mp3")
+    clearSound = new sound("sounds/clear.mp3")
     generatePlayfield();
     cells = document.querySelectorAll('.tetris div');
     nextTetrominoElement = document.querySelector('.next-tetromino-preview');
@@ -94,6 +100,22 @@ function init() {
     draw();
     if (!gameStarted){
         showOverlay('start');
+    }
+}
+
+// Sounds
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
     }
 }
 
@@ -213,6 +235,7 @@ function drawNextTetromino() {
 // Move the Tetromino down
 function moveTetrominoDown() {
     if (!isPaused && gameStarted) {
+        moveSound.play()
         currentTetromino.row++;
         if (!isValid()) {
             currentTetromino.row--;
@@ -224,6 +247,7 @@ function moveTetrominoDown() {
 // Move the Tetromino left
 function moveTetrominoLeft() {
     if (!isPaused && gameStarted) {
+        moveSound.play()
         currentTetromino.column--;
         if (!isValid()) currentTetromino.column++;
     }
@@ -232,6 +256,7 @@ function moveTetrominoLeft() {
 // Move the Tetromino right
 function moveTetrominoRight() {
     if (!isPaused && gameStarted) {
+        moveSound.play()
         currentTetromino.column++;
         if (!isValid()) currentTetromino.column--;
     }
@@ -242,6 +267,7 @@ function rotateTetromino() {
     if (!isPaused && gameStarted) {
         const oldMatrix = currentTetromino.matrix;
         currentTetromino.matrix = rotateMatrix(currentTetromino.matrix);
+        rotateSound.play()
         if (!isValid()) currentTetromino.matrix = oldMatrix;
     }
 }
@@ -296,6 +322,7 @@ function clearLines() {
         level = Math.ceil(score / 100);
         scoreElement.innerHTML = score;
         levelElement.innerHTML = level;
+        clearSound.play()
         startGameLoop();
     }
 }
