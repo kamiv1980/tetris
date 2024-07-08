@@ -319,7 +319,7 @@ function clearLines() {
     }
     if (linesCleared) {
         score += linesCleared * 10;
-        level = Math.ceil(score / 100);
+        level = Math.floor(score / 100);
         scoreElement.innerHTML = score;
         levelElement.innerHTML = level;
         clearSound.play()
